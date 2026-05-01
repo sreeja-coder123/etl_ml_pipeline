@@ -9,6 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,14 +19,20 @@ jobs:
         with:
           python-version: "3.10"
 
+      # ✅ FIX: ensure imports like "app" work correctly
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=." >> $GITHUB_ENV
+
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
 
+      # Optional safety: ensure model training doesn't break CI silently
       - name: Train ML model
         run: python -c "from app.ml_model import train_and_save_model; train_and_save_model()"
 
+      # Run tests with coverage
       - name: Run tests with coverage
         run: pytest tests/ --cov=app --cov-report=xml --cov-fail-under=90
 
