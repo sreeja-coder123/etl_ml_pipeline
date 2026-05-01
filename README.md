@@ -224,6 +224,8 @@ GitHub Actions automatically:
 
 CI: PASSING ✔
 
+## Running Screenshots
+<img width="815" height="408" alt="Screenshot 2026-05-01 213452" src="https://github.com/user-attachments/assets/f3f61bfc-45d7-4cf1-b3f6-2e3c5abb42d0" />
 
 ## Example Workflow
 
